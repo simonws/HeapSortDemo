@@ -1,52 +1,48 @@
 package com.demo.sort;
 
 public class HeapSort {
-	static void HeapAdjust(int[] a,int i,int size)  //µ÷Õû¶Ñ 
+	static void HeapAdjust(int[] a, int i, int size) // ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
-	    int lchild=2*i;       //iµÄ×óº¢×Ó½ÚµãÐòºÅ 
-	    int rchild=2*i+1;     //iµÄÓÒº¢×Ó½ÚµãÐòºÅ 
-	    int max=i;            //ÁÙÊ±±äÁ¿ 
-	    if(i<=size/2)          //Èç¹ûi²»ÊÇÒ¶½Úµã¾Í²»ÓÃ½øÐÐµ÷Õû 
-	    {
-	        if(lchild<=size&&a[lchild]>a[max])
-	        {
-	            max=lchild;
-	        }    
-	        if(rchild<=size&&a[rchild]>a[max])
-	        {
-	            max=rchild;
-	        }
-	        if(max!=i)
-	        {
-	            swap(a[i],a[max]);
-	            HeapAdjust(a,max,size);    //±ÜÃâµ÷ÕûÖ®ºóÒÔmaxÎª¸¸½ÚµãµÄ×ÓÊ÷²»ÊÇ¶Ñ 
-	        }
-	    }        
+		int lchild = 2 * i + 1; // iï¿½ï¿½ï¿½ï¿½ï¿½Ó½Úµï¿½ï¿½ï¿½ï¿½
+		int rchild = 2 * i + 2; // iï¿½ï¿½ï¿½Òºï¿½ï¿½Ó½Úµï¿½ï¿½ï¿½ï¿½
+		int max = i; // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
+		if (i <= size / 2) // ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½Ò¶ï¿½Úµï¿½Í²ï¿½ï¿½Ã½ï¿½ï¿½Ðµï¿½ï¿½ï¿½
+		{
+			if (lchild <= size && a[lchild] > a[max]) {
+				max = lchild;
+			}
+			if (rchild <= size && a[rchild] > a[max]) {
+				max = rchild;
+			}
+			if (max != i) {
+				swap(a[i], a[max]);
+				HeapAdjust(a, max, size); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½maxÎªï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½
+			}
+		}
 	}
 
-	 static void BuildHeap(int[] a,int size)    //½¨Á¢¶Ñ 
+	static void BuildHeap(int[] a, int size) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
-	    int i;
-	    for(i=size/2;i>=1;i--)    //·ÇÒ¶½Úµã×î´óÐòºÅÖµÎªsize/2 
-	    {
-	        HeapAdjust(a,i,size);    
-	    }    
-	} 
-
-	static void HeapSort(int[] a,int size)    //¶ÑÅÅÐò 
-	{
-	    int i;
-	    BuildHeap(a,size);
-	    for(i=size;i>=1;i--)
-	    {
-	        //cout<<a[1]<<" ";
-	        swap(a[1],a[i]);           //½»»»¶Ñ¶¥ºÍ×îºóÒ»¸öÔªËØ£¬¼´Ã¿´Î½«Ê£ÓàÔªËØÖÐµÄ×î´óÕß·Åµ½×îºóÃæ 
-	          //BuildHeap(a,i-1);        //½«ÓàÏÂÔªËØÖØÐÂ½¨Á¢Îª´ó¶¥¶Ñ 
-	          HeapAdjust(a,1,i-1);      //ÖØÐÂµ÷Õû¶Ñ¶¥½Úµã³ÉÎª´ó¶¥¶Ñ
-	    }
+		int i;
+		for (i = size / 2; i >= 1; i--) // ï¿½ï¿½Ò¶ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎªsize/2
+		{
+			HeapAdjust(a, i, size);
+		}
 	}
-	
-	static void swap(int a, int b){
+
+	static void HeapSort(int[] a, int size) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	{
+		int i;
+		BuildHeap(a, size);
+		for (i = size - 1; i >= 0; i--) {
+			// cout<<a[1]<<" ";
+			swap(a[0], a[i]); // ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½Ã¿ï¿½Î½ï¿½Ê£ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ß·Åµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// BuildHeap(a,i-1); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½Îªï¿½ó¶¥¶ï¿½
+			HeapAdjust(a, 0, i - 1); // ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½Úµï¿½ï¿½Îªï¿½ó¶¥¶ï¿½
+		}
+	}
+
+	static void swap(int a, int b) {
 		int temp = a;
 		a = b;
 		b = temp;
@@ -54,11 +50,11 @@ public class HeapSort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-	     int a[]={0,16,20,3,11,17,8};
-	    
-//	    int a[100];
-	    int size = a.length;
-	    HeapSort(a,size);
+		int a[] = { 0, 16, 20, 3, 11, 17, 8 };
+
+		// int a[100];
+		int size = a.length;
+		HeapSort(a, size);
 	}
 
 }
